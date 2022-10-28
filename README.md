@@ -1,3 +1,7 @@
+- Quedaría conectar con la API para traer los anuncios desde ahí
+- Darle un poco más de formato a los anuncios.
+- Trabajar el CSS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
