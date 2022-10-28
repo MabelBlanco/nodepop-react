@@ -1,10 +1,10 @@
-import ListAdvertisements from "./components/listAdvertisements/ListAdvertisements.js";
+import AdvertisementsList from "./components/advertisementsList/AdvertisementsList.js";
 
 
 function App() {
   return (
     <div className="App">
-      <ListAdvertisements></ListAdvertisements>
+      <AdvertisementsList></AdvertisementsList>
     </div>
   );
 }
