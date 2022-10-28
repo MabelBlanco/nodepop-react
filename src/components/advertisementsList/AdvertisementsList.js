@@ -1,5 +1,6 @@
 import { getAdvertisements } from "./advertisementsListModel.js"
 import { useEffect, useState } from 'react'
+import { drawAdvertisement } from "./advertisementsListView.js"
 
 
 
@@ -25,7 +26,7 @@ export default function AdvertisementsList () {
                 (<ul>
                     {advertisements.map(advertisement => {
                         return (
-                        <li key={advertisement.id}>{advertisement.title}</li>
+                        drawAdvertisement (advertisement)
                     )})}
                 </ul>) :
                 (<button>No hay anuncios... ¿Quieres crear uno?</button>)
