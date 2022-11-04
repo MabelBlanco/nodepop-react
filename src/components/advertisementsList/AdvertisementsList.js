@@ -2,6 +2,7 @@ import { getAdvertisements } from "./advertisementsListModel.js"
 import { useEffect, useState } from 'react'
 import { drawAdvertisement } from "./advertisementsListView.js"
 
+import "./advertisementList.css"
 
 
 export default function AdvertisementsList () {

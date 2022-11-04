@@ -1,10 +1,16 @@
+import { Routes, Route, Navigate } from "react-router-dom";
 import AdvertisementsList from "./components/advertisementsList/AdvertisementsList.js";
-
+import { LoginPage } from "./components/loginPage/LoginPage.js";
 
 function App() {
   return (
     <div className="App">
-      <AdvertisementsList></AdvertisementsList>
+      <Routes>
+        <Route path="/login" element={<LoginPage></LoginPage>} />
+        <Route path="/" element={<AdvertisementsList></AdvertisementsList>} />
+        <Route path="/404" element={<div>404-Página no encontrada</div>} />
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
     </div>
   );
 }

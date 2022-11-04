@@ -1,0 +1,23 @@
+.advertisementsList a {
+    text-decoration: none;
+    color: black;
+}
+.advertisementsList {
+    margin: 20px;
+    border-width: 3px;
+    border-color: rgb(164, 20, 20);
+    border-style: double;
+}
+
+.advertisementsList a > * {
+    margin: 10px;
+}
+
+.advertisementsList h3 {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.advertisementsList img {
+    height: 200px;
+}

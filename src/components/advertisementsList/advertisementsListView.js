@@ -1,6 +1,8 @@
+import "./advertisementList.css"
+
 export function drawAdvertisement (advertisement) {
     return (
-        <li key={advertisement.id}>
+        <li className="advertisementsList" key={advertisement.id}>
             <a href="./">
                 <h3>{advertisement.title}</h3>
                 {advertisement.photo ? <img src = {advertisement.photo} alt = {advertisement.title}/> : <p>No hay foto</p>}

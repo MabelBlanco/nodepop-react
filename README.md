@@ -1,5 +1,5 @@
-- Quedaría conectar con la API para traer los anuncios desde ahí
-- Darle un poco más de formato a los anuncios.
+- Estoy trabajando en la página de login
+- Quedaría conectar con la API de nodepop para traer los anuncios desde ahí
 - Trabajar el CSS
 
 # Getting Started with Create React App
