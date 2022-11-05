@@ -1,3 +1,4 @@
 export const endpoints = {
-    advertisements: '/api/advertisements'
-}
+  advertisements: "/api/v1/adverts",
+  login: "/api/auth/login",
+};
