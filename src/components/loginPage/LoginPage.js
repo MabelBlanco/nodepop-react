@@ -1,21 +1,37 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { InputWithLabel } from "../common/InputWithLabel";
 import "./loginPage.css";
 import { loginToApi } from "./loginPageModel";
+import storage from "../../utils/storage";
 
 export function LoginPage() {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const changeChecked = () => {
+    if (checked) {
+      setChecked(false);
+      console.log(checked);
+    } else {
+      setChecked(true);
+    }
+  };
 
   const submitEvent = async (event) => {
     event.preventDefault();
 
     try {
-      await loginToApi(emailValue, passwordValue);
+      const token = await loginToApi(emailValue, passwordValue);
+
+      if (checked) {
+        storage.set("token", token);
+      }
 
       const to = location.state?.from?.pathname || "/";
       navigate(to);
@@ -28,7 +44,7 @@ export function LoginPage() {
     <form id="login" onSubmit={submitEvent}>
       <h2>Entrar</h2>
       <div className="emailContainer">
-        <label htmlFor="loginEmail">Nombre de usuario:</label>
+        <label htmlFor="loginEmail">Email:</label>
         <input
           value={emailValue}
           type="text"
@@ -47,6 +63,12 @@ export function LoginPage() {
           onChange={(event) => setPasswordValue(event.target.value)}
         />
       </div>
+      <InputWithLabel
+        type="checkbox"
+        id="saveToken"
+        label="¿Quieres que te recordemos?"
+        onChange={changeChecked}
+      />
       <button type="submit" form="login">
         Entrar
       </button>

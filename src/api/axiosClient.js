@@ -9,7 +9,14 @@ client.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    if (!error.response) {
+      return Promise.reject({
+        message:
+          "No se ha podido conectar con la base de datos. Inténtelo de nuevo más tarde.",
+      });
+    } else {
+      return Promise.reject(error);
+    }
   }
 );
 
