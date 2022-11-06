@@ -4,12 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import storage from "./utils/storage";
+import { AuthContextProvider } from "./components/context/AuthContext";
+import { setAuthorizationHeader } from "./api/axiosClient";
+
+const initialToken = storage.get("token");
+if (initialToken) {
+  setAuthorizationHeader(initialToken);
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <AuthContextProvider haveInitialToken={!!initialToken}>
+        <App />
+      </AuthContextProvider>
     </Router>
   </React.StrictMode>
 );
