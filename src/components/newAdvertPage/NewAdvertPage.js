@@ -1,8 +1,24 @@
+import { useState } from "react";
 import { InputWithLabel } from "../common/InputWithLabel";
 
 import "./newAdvertPage.css";
 
+const numericRegularExpression = /^[\d\s]*/;
+
 export function NewAdvertPage() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [error, setError] = useState(false);
+
+  //test if the price is numeric or empty
+  const handlePrice = (value) => {
+    setPrice(value);
+    if (!numericRegularExpression.test(value)) {
+      setError(true);
+    }
+  };
+
   return (
     <form className="createAdvertisementForm">
       <InputWithLabel
@@ -10,6 +26,8 @@ export function NewAdvertPage() {
         label="Nombre del producto"
         type="text"
         id="advertisementTitle"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
       />
       <div className="advertisementDescriptionContainer">
         <label htmlFor="advertisementDescription">Descripción</label>
@@ -17,13 +35,17 @@ export function NewAdvertPage() {
           type="text"
           id="advertisementDescription"
           name="advertisementDescription"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         ></textarea>
       </div>
       <InputWithLabel
         className="advertisementPriceContainer"
         label="Precio"
-        type="number"
+        type="text"
         id="advertisementPrice"
+        value={price}
+        onChange={(event) => handlePrice(event.target.value)}
       />
       <div className="advertisementSaleBuyContainer">
         <div>
@@ -58,6 +80,8 @@ export function NewAdvertPage() {
           Crear Anuncio
         </button>
       </div>
+
+      {error ? <div>El precio debe ser un número</div> : ""}
     </form>
   );
 }
