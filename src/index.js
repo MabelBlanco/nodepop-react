@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import storage from "./utils/storage";
 import { AuthContextProvider } from "./components/context/AuthContext";
 import { setAuthorizationHeader } from "./api/axiosClient";
+
+import "./reset.css";
+import "./normalize.css";
+import "./index.css";
 
 const initialToken = storage.get("token");
 if (initialToken) {

@@ -1,0 +1,44 @@
+.createAdvertisementForm {
+  width: 100%;
+}
+.createAdvertisementForm > div {
+  margin: 10px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.createAdvertisementForm input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.createAdvertisementForm label {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.advertisementSaleBuyContainer > div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.advertisementSaleBuyContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.advertisementSaleBuyContainer legend {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.buttonAdvertisementForm {
+  width: 150px;
+}
