@@ -1,6 +1,6 @@
-- Estoy trabajando en la página de login
-- Quedaría conectar con la API de nodepop para traer los anuncios desde ahí
-- Trabajar el CSS
+- Estoy trabajando en la página de newAdvertPage
+- He terminado las comprobaciones y el manejo del boton de envio
+- Queda confirmar que la imagen se envia correctamente y conectar con el APi para crear el anuncio
 
 # Getting Started with Create React App
 

@@ -11,6 +11,7 @@ client.interceptors.response.use(
   (error) => {
     if (!error.response) {
       return Promise.reject({
+        status: "No connection",
         message:
           "No se ha podido conectar con la base de datos. Inténtelo de nuevo más tarde.",
       });

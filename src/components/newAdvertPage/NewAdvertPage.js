@@ -1,22 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputWithLabel } from "../common/InputWithLabel";
 
 import "./newAdvertPage.css";
+import { getTags } from "./newAdvertPageModel";
 
 const numericRegularExpression = /^[\d\s]*/;
 
 export function NewAdvertPage() {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState(false);
+  const [isSale, setIsSale] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [photo, setPhoto] = useState("");
+
+  useEffect(() => {
+    const requestTags = async () => {
+      try {
+        const apiTags = await getTags();
+        setTags(apiTags);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    requestTags();
+  }, []);
+
+  const requiredInputs =
+    title && price && selectedTags.length && isSale !== null;
 
   //test if the price is numeric or empty
   const handlePrice = (value) => {
     setPrice(value);
     if (!numericRegularExpression.test(value)) {
-      setError(true);
+      setError("El precio debe ser un número");
     }
+  };
+
+  const handleTags = (value) => {
+    if (!selectedTags.includes(value)) {
+      setSelectedTags((selectedTags) => [...selectedTags, value]);
+    }
+  };
+
+  const sendAdvertisement = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -29,16 +58,6 @@ export function NewAdvertPage() {
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      <div className="advertisementDescriptionContainer">
-        <label htmlFor="advertisementDescription">Descripción</label>
-        <textarea
-          type="text"
-          id="advertisementDescription"
-          name="advertisementDescription"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        ></textarea>
-      </div>
       <InputWithLabel
         className="advertisementPriceContainer"
         label="Precio"
@@ -57,6 +76,7 @@ export function NewAdvertPage() {
             type="radio"
             name="advertisementSaleBuy"
             id="advertisementSale"
+            onClick={() => setIsSale(true)}
           />
         </div>
 
@@ -66,22 +86,73 @@ export function NewAdvertPage() {
             type="radio"
             name="advertisementSaleBuy"
             id="advertisementBuy"
+            onClick={() => setIsSale(false)}
           />
         </div>
       </div>
+      <div className="advertaisementTagsContainer">
+        <label htmlFor="advertisementTags">
+          Elige una o más etiquetas para tu anuncio:
+        </label>
+        <select
+          name="advertisementTags"
+          id="advertisementTags"
+          multiple
+          size="3"
+          onChange={(event) => handleTags(event.target.value)}
+        >
+          {tags.map((tag) => (
+            <option value={tag} key={tag}>
+              {tag}
+            </option>
+          ))}
+        </select>
+        {selectedTags.length ? (
+          <div>
+            <p>Has elegido: </p>
+            {selectedTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={(event) => {
+                  event.preventDefault();
+                  const changedTags = selectedTags.filter(
+                    (item) => item !== tag
+                  );
+                  setSelectedTags(changedTags);
+                }}
+              >
+                <span>{`#${tag} `}</span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
       <div className="advertisementPhotoContainer">
         <label htmlFor="advertisementPhoto">
-          Puedes añadir un link con la foto de tu producto
+          Puedes añadir una foto de tu producto:
         </label>
-        <input type="url" id="advertisementPhoto" name="advertisementPhoto" />
+        <input
+          type="file"
+          id="advertisementPhoto"
+          name="advertisementPhoto"
+          onChange={(event) => setPhoto(event.target.value)}
+          value={photo}
+        />
       </div>
       <div id="buttonContainer">
-        <button type="submit" disabled id="buttonAdvertisementForm">
+        <button
+          type="submit"
+          disabled={requiredInputs ? false : true}
+          id="buttonAdvertisementForm"
+          onClick={(event) => sendAdvertisement(event)}
+        >
           Crear Anuncio
         </button>
       </div>
 
-      {error ? <div>El precio debe ser un número</div> : ""}
+      {error ? <div>{error}</div> : ""}
     </form>
   );
 }
