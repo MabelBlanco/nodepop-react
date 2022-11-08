@@ -1,6 +1,6 @@
 - Estoy trabajando en la página de newAdvertPage
-- He terminado las comprobaciones y el manejo del boton de envio
-- Queda confirmar que la imagen se envia correctamente y conectar con el APi para crear el anuncio
+- He conseguido conectar con el API para guardar el anuncio, pero me falta terminar de configurar la imagen y datos con formdata
+- Queda confirmar que la imagen se envia correctamente
 
 # Getting Started with Create React App
 

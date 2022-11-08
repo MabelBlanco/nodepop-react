@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InputWithLabel } from "../common/InputWithLabel";
 
 import "./newAdvertPage.css";
-import { getTags } from "./newAdvertPageModel";
+import { getTags, postAdvertisement } from "./newAdvertPageModel";
 
 const numericRegularExpression = /^[\d\s]*/;
 
@@ -27,6 +27,7 @@ export function NewAdvertPage() {
     requestTags();
   }, []);
 
+  //test the inputs required are filled
   const requiredInputs =
     title && price && selectedTags.length && isSale !== null;
 
@@ -38,18 +39,42 @@ export function NewAdvertPage() {
     }
   };
 
+  //save the tags selected by the user
   const handleTags = (value) => {
     if (!selectedTags.includes(value)) {
       setSelectedTags((selectedTags) => [...selectedTags, value]);
     }
   };
 
-  const sendAdvertisement = (event) => {
+  const sendAdvertisement = async (event) => {
+    debugger;
     event.preventDefault();
+
+    const advertisement = new FormData();
+
+    advertisement.append("name", title);
+    advertisement.append("sale", isSale);
+    advertisement.append("price", price);
+    advertisement.append("tags", selectedTags);
+
+    if (photo) {
+      advertisement.append("photo", photo);
+    }
+
+    try {
+      const advertisementCreated = await postAdvertisement(advertisement);
+      return advertisementCreated;
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return (
-    <form className="createAdvertisementForm">
+    <form
+      className="createAdvertisementForm"
+      id="createAdvertisement"
+      onSubmit={(event) => sendAdvertisement(event)}
+    >
       <InputWithLabel
         className="advertisementTitleContainer"
         label="Nombre del producto"
@@ -144,9 +169,9 @@ export function NewAdvertPage() {
       <div id="buttonContainer">
         <button
           type="submit"
+          form="createAdvertisement"
           disabled={requiredInputs ? false : true}
           id="buttonAdvertisementForm"
-          onClick={(event) => sendAdvertisement(event)}
         >
           Crear Anuncio
         </button>
