@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdvertisementsList from "./components/advertisementsList/AdvertisementsList.js";
+import { Layout } from "./components/common/Layout.js";
 import { RequireAuth } from "./components/common/RequireAuth.js";
 import { LoginPage } from "./components/loginPage/LoginPage.js";
 import { NewAdvertPage } from "./components/newAdvertPage/NewAdvertPage.js";
@@ -8,13 +9,22 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<LoginPage></LoginPage>} />
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <LoginPage />
+            </Layout>
+          }
+        />
         <Route path="/" element={<Navigate to="/adverts" />} />
         <Route
           path="/adverts"
           element={
             <RequireAuth>
-              <AdvertisementsList></AdvertisementsList>
+              <Layout>
+                <AdvertisementsList />
+              </Layout>
             </RequireAuth>
           }
         />
@@ -22,7 +32,9 @@ function App() {
           path="/adverts/new"
           element={
             <RequireAuth>
-              <NewAdvertPage></NewAdvertPage>
+              <Layout>
+                <NewAdvertPage />
+              </Layout>
             </RequireAuth>
           }
         />

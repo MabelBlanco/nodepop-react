@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#login-register-nav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 10px;
+  width: 100%;
+}
+
+#login-register-nav > a {
+  margin: 10px;
+}
