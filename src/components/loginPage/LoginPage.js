@@ -4,6 +4,7 @@ import { InputWithLabel } from "../common/InputWithLabel";
 import "./loginPage.css";
 import { loginToApi } from "./loginPageModel";
 import storage from "../../utils/storage";
+import { useAuth } from "../context/AuthContext";
 
 export function LoginPage() {
   const [emailValue, setEmailValue] = useState("");
@@ -13,11 +14,11 @@ export function LoginPage() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const { handleLogin } = useAuth();
 
   const changeChecked = () => {
     if (checked) {
       setChecked(false);
-      console.log(checked);
     } else {
       setChecked(true);
     }
@@ -33,6 +34,7 @@ export function LoginPage() {
         storage.set("token", token);
       }
 
+      handleLogin();
       const to = location.state?.from?.pathname || "/";
       navigate(to);
     } catch (error) {

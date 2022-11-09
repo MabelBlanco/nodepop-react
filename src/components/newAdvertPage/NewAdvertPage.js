@@ -15,6 +15,8 @@ export function NewAdvertPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [photo, setPhoto] = useState("");
 
+  console.log(photo);
+
   useEffect(() => {
     const requestTags = async () => {
       try {
@@ -47,7 +49,7 @@ export function NewAdvertPage() {
   };
 
   const sendAdvertisement = async (event) => {
-    debugger;
+    console.log(event);
     event.preventDefault();
 
     const advertisement = new FormData();
@@ -162,8 +164,7 @@ export function NewAdvertPage() {
           type="file"
           id="advertisementPhoto"
           name="advertisementPhoto"
-          onChange={(event) => setPhoto(event.target.value)}
-          value={photo}
+          onChange={(event) => setPhoto(event.target.files[0])}
         />
       </div>
       <div id="buttonContainer">

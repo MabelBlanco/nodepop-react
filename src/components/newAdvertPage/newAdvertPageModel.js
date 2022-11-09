@@ -14,14 +14,7 @@ export async function getTags() {
 
 export async function postAdvertisement(advertisement) {
   try {
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
-    const data = await client.post(
-      endpoints.advertisements,
-      advertisement,
-      config
-    );
+    const data = await client.post(endpoints.advertisements, advertisement);
     console.log(data);
   } catch (error) {
     if (error.status === "No connection") {

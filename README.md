@@ -1,6 +1,5 @@
-- Estoy trabajando en la página de newAdvertPage
-- He conseguido conectar con el API para guardar el anuncio, pero me falta terminar de configurar la imagen y datos con formdata
-- Queda confirmar que la imagen se envia correctamente
+- He terminado NewAdvertPage
+- He corregido el Login para añadir el contexto de isLogged
 
 # Getting Started with Create React App
 

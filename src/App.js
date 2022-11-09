@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdvertisementsList from "./components/advertisementsList/AdvertisementsList.js";
+import { RequireAuth } from "./components/common/RequireAuth.js";
 import { LoginPage } from "./components/loginPage/LoginPage.js";
 import { NewAdvertPage } from "./components/newAdvertPage/NewAdvertPage.js";
 
@@ -8,8 +9,23 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/login" element={<LoginPage></LoginPage>} />
-        <Route path="/" element={<AdvertisementsList></AdvertisementsList>} />
-        <Route path="/adverts/new" element={<NewAdvertPage></NewAdvertPage>} />
+        <Route path="/" element={<Navigate to="/adverts" />} />
+        <Route
+          path="/adverts"
+          element={
+            <RequireAuth>
+              <AdvertisementsList></AdvertisementsList>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/adverts/new"
+          element={
+            <RequireAuth>
+              <NewAdvertPage></NewAdvertPage>
+            </RequireAuth>
+          }
+        />
         <Route path="/404" element={<div>404-Página no encontrada</div>} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
