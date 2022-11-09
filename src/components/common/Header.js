@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { removeAuthorizationHeader } from "../../api/axiosClient";
 import storage from "../../utils/storage";
@@ -7,6 +8,7 @@ import "./header.css";
 
 export function Header() {
   const { isLogged, handleLogOut } = useAuth();
+  const [confirm, setConfirm] = useState(false);
 
   const logOut = () => {
     handleLogOut();
@@ -16,7 +18,7 @@ export function Header() {
 
   const loggedContent = (
     <nav id="login-register-nav">
-      <Link onClick={logOut}>Cerrar Sesión</Link>
+      <Link onClick={() => setConfirm(true)}>Cerrar Sesión</Link>
       <NavLink to="/adverts">Anuncios</NavLink>
       <NavLink to="/adverts/new">Crear Anuncio</NavLink>
     </nav>
@@ -31,6 +33,15 @@ export function Header() {
   return (
     <header className="header">
       {isLogged ? loggedContent : notLoggedContent}
+      {confirm ? (
+        <div>
+          <div>¿Seguro que quieres cerrar sesión?</div>{" "}
+          <button onClick={logOut}>Si</button>
+          <button onClick={() => setConfirm(false)}>No</button>
+        </div>
+      ) : (
+        ""
+      )}
     </header>
   );
 }
