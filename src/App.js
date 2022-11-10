@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import AdvertisementsList from "./components/advertisementsList/AdvertisementsList.js";
+import AdvertsPage from "./components/advertsPage/AdvertsPage.js";
 import { Layout } from "./components/common/Layout.js";
 import { RequireAuth } from "./components/common/RequireAuth.js";
+import { SearchContextProvider } from "./components/context/searchContext.js";
 import { LoginPage } from "./components/loginPage/LoginPage.js";
 import { NewAdvertPage } from "./components/newAdvertPage/NewAdvertPage.js";
 
@@ -22,9 +23,11 @@ function App() {
           path="/adverts"
           element={
             <RequireAuth>
-              <Layout>
-                <AdvertisementsList />
-              </Layout>
+              <SearchContextProvider>
+                <Layout>
+                  <AdvertsPage />
+                </Layout>
+              </SearchContextProvider>
             </RequireAuth>
           }
         />
