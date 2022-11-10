@@ -1,5 +1,6 @@
-- He terminado NewAdvertPage
-- He corregido el Login para añadir el contexto de isLogged
+- Estoy trabajando en AdvertsPage
+- Estoy haciendo los filtros para la búsqueda
+- He terminado name y sale, quedarían el resto.
 
 # Getting Started with Create React App
 

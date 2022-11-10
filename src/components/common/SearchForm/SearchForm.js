@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useSearch } from "../context/searchContext";
-import { InputWithLabel } from "./InputWithLabel";
+import { useSearch } from "../../context/searchContext";
+import { InputWithLabel } from "../InputWithLabel";
+
+import "./searchForm.css";
 
 export function SearchForm({
   nameValue,
@@ -9,11 +10,12 @@ export function SearchForm({
   setPriceMinValue,
   priceMaxValue,
   setPriceMaxValue,
+  submit,
 }) {
   const { handleSale, tags, handleTags, showSelectedTags } = useSearch();
 
   return (
-    <form className="searchForm">
+    <form className="searchForm" id="searchForm">
       <InputWithLabel
         className="searchNameContainer"
         label="Nombre del producto"
@@ -60,7 +62,7 @@ export function SearchForm({
       <div className="searchPriceContainer">
         <InputWithLabel
           className="searchMinPriceContainer"
-          label="Precio mínimo"
+          label="Precio mínimo:"
           type="text"
           id="searchMinPrice"
           value={priceMinValue}
@@ -68,7 +70,7 @@ export function SearchForm({
         />
         <InputWithLabel
           className="searchMaxPriceContainer"
-          label="Precio máximo"
+          label="Precio máximo:"
           type="text"
           id="searchMaxPrice"
           value={priceMaxValue}
@@ -83,7 +85,7 @@ export function SearchForm({
           name="searchTags"
           id="searchTags"
           multiple
-          size="3"
+          size="2"
           onChange={(event) => handleTags(event.target.value)}
         >
           {tags.map((tag) => (
@@ -93,6 +95,16 @@ export function SearchForm({
           ))}
         </select>
         {showSelectedTags}
+      </div>
+      <div id="buttonContainer">
+        <button
+          type="submit"
+          form="searchForm"
+          id="buttonSearchForm"
+          onClick={submit}
+        >
+          Buscar Anuncios
+        </button>
       </div>
     </form>
   );

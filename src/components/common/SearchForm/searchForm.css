@@ -1,0 +1,66 @@
+.searchForm {
+  width: 100%;
+}
+
+.searchForm > div {
+  margin: 10px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchForm input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.searchForm label {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.searchSaleBuyContainer > div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.searchSaleBuyContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.searchSaleBuyContainer legend {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.buttonSearchForm {
+  width: 150px;
+}
+
+#searchTags {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.searchTagsContainer button {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.searchForm .searchPriceContainer {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.searchPriceContainer input {
+  margin-left: 5px;
+  width: 20%;
+}

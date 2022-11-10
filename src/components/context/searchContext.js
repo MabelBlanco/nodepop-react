@@ -63,6 +63,7 @@ export function SearchContextProvider({ children }) {
         tags,
         handleTags,
         showSelectedTags,
+        selectedTags,
       }}
     >
       {children}
