@@ -10,6 +10,7 @@ import { aplicateFilters } from "../../utils/aplicateFilters.js";
 
 export default function AdvertsPage() {
   const [advertisements, setAdvertisements] = useState([]);
+  const [advertisementsToFilter, setAdvertisementsToFilter] = useState([]);
   const [name, setName] = useState("");
   const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(0);
@@ -22,19 +23,24 @@ export default function AdvertsPage() {
     navigate("/adverts/new");
   };
 
+  const getAdvertisementsToApi = async () => {
+    const advertisementsApi = await getAdvertisements();
+    setAdvertisements(advertisementsApi);
+    setAdvertisementsToFilter(advertisementsApi);
+  };
   useEffect(() => {
-    const execute = async () => {
-      const advertisementsApi = await getAdvertisements();
-      setAdvertisements(advertisementsApi);
-    };
-    execute();
+    getAdvertisementsToApi();
   }, []);
 
   const aplicateFiltersToAdvertisements = (event) => {
     event.preventDefault();
+
     const filters = { name, sale, priceMin, priceMax, selectedTags };
 
-    const advertisementsWithFilters = aplicateFilters(advertisements, filters);
+    const advertisementsWithFilters = aplicateFilters(
+      advertisementsToFilter,
+      filters
+    );
 
     setAdvertisements(advertisementsWithFilters);
   };
