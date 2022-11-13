@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { InputWithLabel } from "../common/InputWithLabel";
 
 import "./newAdvertPage.css";
@@ -15,7 +16,7 @@ export function NewAdvertPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [photo, setPhoto] = useState("");
 
-  console.log(photo);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const requestTags = async () => {
@@ -49,9 +50,8 @@ export function NewAdvertPage() {
   };
 
   const sendAdvertisement = async (event) => {
-    console.log(event);
     event.preventDefault();
-
+    // create advertisement like a formData because we have to send to Api with this format
     const advertisement = new FormData();
 
     advertisement.append("name", title);
@@ -65,7 +65,7 @@ export function NewAdvertPage() {
 
     try {
       const advertisementCreated = await postAdvertisement(advertisement);
-      return advertisementCreated;
+      navigate(`/adverts/${advertisementCreated.id}`);
     } catch (error) {
       setError(error);
     }

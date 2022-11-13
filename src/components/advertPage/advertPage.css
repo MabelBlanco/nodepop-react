@@ -1,0 +1,18 @@
+.advertisementDetail {
+  margin: 20px;
+  border-width: 3px;
+  border-color: rgb(164, 20, 20);
+  border-style: double;
+}
+
+.advertisementDetail > * {
+  margin: 10px;
+}
+
+.advertisementDetail > h2 {
+  text-decoration: underline;
+}
+
+.advertisementDetail img {
+  height: 400px;
+}

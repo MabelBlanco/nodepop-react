@@ -35,7 +35,7 @@ export function Header() {
       {isLogged ? loggedContent : notLoggedContent}
       {confirm ? (
         <div>
-          <div>¿Seguro que quieres cerrar sesión?</div>{" "}
+          <div>¿Seguro que quieres cerrar sesión?</div>
           <button onClick={logOut}>Si</button>
           <button onClick={() => setConfirm(false)}>No</button>
         </div>

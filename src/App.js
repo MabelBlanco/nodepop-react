@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { AdvertPage } from "./components/advertPage/AdvertPage.js";
 import AdvertsPage from "./components/advertsPage/AdvertsPage.js";
 import { Layout } from "./components/common/Layout.js";
 import { RequireAuth } from "./components/common/RequireAuth.js";
@@ -37,6 +38,16 @@ function App() {
             <RequireAuth>
               <Layout>
                 <NewAdvertPage />
+              </Layout>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/adverts/:advertisementId"
+          element={
+            <RequireAuth>
+              <Layout>
+                <AdvertPage />
               </Layout>
             </RequireAuth>
           }

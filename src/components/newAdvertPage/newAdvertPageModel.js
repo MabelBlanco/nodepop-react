@@ -15,7 +15,7 @@ export async function getTags() {
 export async function postAdvertisement(advertisement) {
   try {
     const data = await client.post(endpoints.advertisements, advertisement);
-    console.log(data);
+    return data;
   } catch (error) {
     if (error.status === "No connection") {
       return Promise.reject(error.message);
