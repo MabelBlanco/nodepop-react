@@ -1,7 +1,3 @@
-- Estoy trabajando en AdvertsPage
-- Estoy haciendo los filtros para la búsqueda
-- He terminado name y sale, quedarían el resto.
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
