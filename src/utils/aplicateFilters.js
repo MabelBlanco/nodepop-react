@@ -39,10 +39,21 @@ export function aplicateFilters(advertisements, filters) {
   if (filters.selectedTags) {
     advertisementsWithFilters = advertisementsWithFilters.filter(
       (advertisement) => {
-        const result = filters.selectedTags.map((tag) =>
-          advertisement.tags.includes(tag)
+        // Must have every tags selected
+        const filtersTags = filters.selectedTags.sort();
+        const advertisementTags = advertisement.tags.sort();
+
+        return (
+          filtersTags.length === advertisementTags.length &&
+          filtersTags.every((value, index) => {
+            return value === advertisementTags[index];
+          })
         );
-        return result[0];
+        // Must have 1 of tags selected
+        // const result = filters.selectedTags.map((tag) =>
+        //   advertisement.tags.includes(tag)
+        // );
+        // return result[0];
       }
     );
   }
