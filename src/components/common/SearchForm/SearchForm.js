@@ -12,7 +12,7 @@ export function SearchForm({
   setPriceMaxValue,
   submit,
 }) {
-  const { handleSale, tags, handleTags, showSelectedTags } = useSearch();
+  const { handleSale, tags, handleTags, showSelectedTags, sale } = useSearch();
 
   return (
     <form className="searchForm" id="searchForm">
@@ -36,6 +36,7 @@ export function SearchForm({
             name="searchSaleBuy"
             id="searchSale"
             onClick={() => handleSale("sale")}
+            checked={sale === "sale" ? true : false}
           />
         </div>
 
@@ -46,6 +47,7 @@ export function SearchForm({
             name="searchSaleBuy"
             id="searchBuy"
             onClick={() => handleSale("buy")}
+            checked={sale === "buy" ? true : false}
           />
         </div>
 
@@ -56,6 +58,7 @@ export function SearchForm({
             name="searchSaleBuy"
             id="searchAll"
             onClick={() => handleSale("all")}
+            checked={sale === "all" ? true : false}
           />
         </div>
       </div>

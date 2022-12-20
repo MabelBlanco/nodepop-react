@@ -70,6 +70,7 @@ export function LoginPage() {
         id="saveToken"
         label="¿Quieres que te recordemos?"
         onChange={changeChecked}
+        checked={checked}
       />
       <button type="submit" form="login">
         Entrar
