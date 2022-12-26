@@ -7,6 +7,7 @@ import {
 
 import "./advertPage.css";
 import { useAuth } from "../context/AuthContext";
+import { ConfirmDiv } from "../common/confirmDiv";
 
 export function AdvertPage() {
   const [advertisement, setAdvertisement] = useState();
@@ -62,11 +63,11 @@ export function AdvertPage() {
           <>
             <button onClick={() => setConfirm(true)}>Borrar Anuncio</button>
             {confirm ? (
-              <>
-                <p>¿Seguro que quieres borrar el anuncio?</p>
-                <button onClick={deleteAdvertisement}>Si</button>
-                <button onClick={() => setConfirm(false)}>No</button>
-              </>
+              <ConfirmDiv
+                question="¿Seguro que quieres borrar el anuncio?"
+                yesFunction={deleteAdvertisement}
+                noFunction={() => setConfirm(false)}
+              />
             ) : (
               ""
             )}
