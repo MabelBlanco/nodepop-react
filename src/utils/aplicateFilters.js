@@ -36,7 +36,7 @@ export function aplicateFilters(advertisements, filters) {
     }
   }
 
-  if (filters.selectedTags) {
+  if (filters.selectedTags.length > 0) {
     advertisementsWithFilters = advertisementsWithFilters.filter(
       (advertisement) => {
         // Must have every tags selected

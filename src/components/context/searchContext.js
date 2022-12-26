@@ -32,6 +32,9 @@ export function SearchContextProvider({ children }) {
   const handleTags = (value) => {
     if (!selectedTags.includes(value)) {
       setSelectedTags((selectedTags) => [...selectedTags, value]);
+    } else {
+      const tagsWithoutValue = selectedTags.filter((tag) => tag !== value);
+      setSelectedTags(tagsWithoutValue);
     }
   };
 

@@ -12,7 +12,8 @@ export function SearchForm({
   setPriceMaxValue,
   submit,
 }) {
-  const { handleSale, tags, handleTags, showSelectedTags, sale } = useSearch();
+  const { handleSale, tags, handleTags, selectedTags, showSelectedTags, sale } =
+    useSearch();
 
   return (
     <form className="searchForm" id="searchForm">
@@ -89,7 +90,8 @@ export function SearchForm({
           id="searchTags"
           multiple
           size="2"
-          onChange={(event) => handleTags(event.target.value)}
+          onClick={(event) => handleTags(event.target.value)}
+          value={selectedTags}
         >
           {tags.map((tag) => (
             <option value={tag} key={tag}>
